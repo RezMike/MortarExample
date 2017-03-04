@@ -9,6 +9,7 @@ public class App extends Application {
     public static final String APP_STRING = "APP_STRING";
 
     private MortarScope mRootScope;
+    private MortarScope mRootActivityScope;
 
     @Override
     public void onCreate() {
@@ -17,6 +18,9 @@ public class App extends Application {
         mRootScope = MortarScope.buildRootScope()
                 .withService(APP_STRING, "AppScope")
                 .build("Root");
+        mRootActivityScope = mRootScope.buildChild()
+                .withService(RootActivity.ROOT_STRING, "RootScope")
+                .build(RootActivity.getRootScopeName());
     }
 
     @Override
